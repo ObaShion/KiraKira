@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var imageData: UIImage?
+    @State private var isShowPhotoPicker: Bool = false
+    @State private var isShowAddView: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                Button("画像を選ぶ") {
+                    isShowPhotoPicker = true
+                }
+            }
+            .sheet(isPresented: $isShowPhotoPicker) {
+                PhotoPickView(imageData: $imageData, onSelected: {
+                    isShowAddView = true
+                })
+            }
+            .fullScreenCover(isPresented: $isShowAddView, content: {
+                CardView(imageData: $imageData)
+            })
+            .navigationTitle("KiraKira")
         }
-        .padding()
     }
 }
 

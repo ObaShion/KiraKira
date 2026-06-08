@@ -1,0 +1,23 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "collection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コレクション"
+          }
+        }
+      }
+    },
+    "KiraKira" : {
+
+    },
+    "画像を選ぶ" : {
+
+    }
+  },
+  "version" : "1.1"
+}

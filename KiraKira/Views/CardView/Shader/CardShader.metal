@@ -18,24 +18,20 @@ using namespace metal;
                                   ){
     float2 uv = position / viewSize;
     float lineDirection = uv.x + uv.y;
-    float targetPos = time * 4.5 - 0.25;
-    
-    float numWaves = 5.0;
-    float waveSpeed = 8.0;
-    float waveAmplitude = 0.015;
+    float targetPos = time * 3.0 - 0.25;
     
     float2 offset = float2(0.0);
     float highlightDecay = 0.0;
     
     if (lineDirection < targetPos) {
         float distFromLine = abs(targetPos - lineDirection);
-        float fadeIn = smoothstep(0.0, 0.08, distFromLine);
-        float fadeOut = smoothstep(1.0, 0.08, distFromLine);
+        float fadeIn = metal::smoothstep(0.0, 0.08, distFromLine);
+        float fadeOut = metal::smoothstep(1.0, 0.08, distFromLine);
         
         float highlightFadeOut = smoothstep(0.7, 0.01, distFromLine);
         highlightDecay = fadeIn * highlightFadeOut;
 
-        float waveValue = sin(lineDirection * numWaves - time * waveSpeed) * waveAmplitude * (fadeIn * fadeOut);
+        float waveValue = sin(lineDirection * 5.0 - time * 2.0) * 0.015 * (fadeIn * fadeOut);
         offset = float2(waveValue, waveValue);
     }
     

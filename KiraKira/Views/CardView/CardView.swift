@@ -10,9 +10,8 @@ import Photos
 
 struct CardView: View {
     @Binding var imageData: UIImage?
+    @Binding var isShowToolbar: Bool
     @State private var time: Float = 0.0
-    @State private var isShowToolbar: Bool = false
-    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -35,7 +34,7 @@ struct CardView: View {
                     .onAppear {
                         self.time = 0.0
                         self.isShowToolbar = false
-                        withAnimation(.bouncy(duration: 5.0)) {
+                        withAnimation(.bouncy(duration: 2.0)) {
                             self.time = 1.0
                         } completion: {
                             withAnimation(.easeInOut(duration: 0.5)) {
@@ -44,35 +43,12 @@ struct CardView: View {
                         }
 
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark")
-                            }
-                            .opacity(isShowToolbar ? 1.0 : 0.0)
-                            .disabled(!isShowToolbar)
-                        }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                dismiss()
-                            } label: {
-                                HStack {
-                                    Text("collection")
-                                }
-                            }
-                            .buttonStyle(.glassProminent)
-                            .opacity(isShowToolbar ? 1.0 : 0.0)
-                            .disabled(!isShowToolbar)
-                        }
-                    }
             }
         }
     }
 }
 
 #Preview {
-    CardView(imageData: .constant(UIImage()))
+    CardView(imageData: .constant(UIImage(named: "syon")!),
+             isShowToolbar: .constant(false))
 }

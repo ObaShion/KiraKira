@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct KiraKiraApp: App {
@@ -13,5 +14,6 @@ struct KiraKiraApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: StickerModel.self)
     }
 }
